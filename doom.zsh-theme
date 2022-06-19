@@ -19,11 +19,12 @@ source "$DOOM_ROOT/gitstatus/gitstatus.prompt.zsh"
 source "$DOOM_ROOT/sections/zvm.zsh"
 
 DOOM_SECTIONS=(
+  jobs          # Background jobs indicator
   #user          # Username section
   #gradle        # Gradle section
   #maven         # Maven section
   #package       # Package version
-  #node          # Node.js section
+  node          # Node.js section
   #ruby          # Ruby section
   #elm           # Elm section
   #elixir        # Elixir section
@@ -31,7 +32,7 @@ DOOM_SECTIONS=(
   #swift         # Swift section
   #golang        # Go section
   #php           # PHP section
-  #rust          # Rust section
+  rust          # Rust section
   #haskell       # Haskell Stack section
   #julia         # Julia section
   #docker        # Docker section
@@ -39,12 +40,11 @@ DOOM_SECTIONS=(
   #gcloud        # Google Cloud Platform section
   #venv          # virtualenv section
   #conda         # conda virtualenv section
-  #pyenv         # Pyenv section
+  pyenv         # Pyenv section
   #dotnet        # .NET section
   #ember         # Ember.js section
   #ibmcloud      # IBM Cloud section
   #battery       # Battery level and status
-  #jobs          # Background jobs indicator
 )
 
 # ------------------------------------------------------------------------------
@@ -109,20 +109,20 @@ precmd() {
 }
 
 prompt_status(){
-  echo "%F{255}$(left_triangle)%f%K{255}%F{black} %(?..%{$fg[red]%}%f)  %f%k%F{black}%K{255}$(left_triangle)%f%k"
+  echo "%F{255}$(left_triangle)%f%K{255}%F{00} %(?..%{$fg[red]%}%f)  %f%k%F{00}%K{255}$(left_triangle)%f%k"
 }
 
 prompt_shell(){
-  echo "%F{255}$(left_triangle)%f%K{255}%F{black}  zsh %F{black}$(left_triangle)%f%k"
+  echo "%F{255}$(left_triangle)%f%K{255}%F{00}  %n %F{00}$(left_triangle)%f%k"
 }
 
 prompt_dev_status(){
-  echo "%F{blue}$(left_triangle)%f%F{255}%K{blue}$(prompt_section)%F{black}$(left_triangle)%f%k"
+  echo "%F{blue}$(left_triangle)%f%F{255}%K{blue}$(prompt_section)%F{00}$(left_triangle)%f%k"
 }
 
 prompt_exectime(){
   if [[ $TIME ]]; then
-    echo "%F{245}$(left_triangle)%f%K{245}%F{black} $TIME %k%F{245}$(right_triangle)%f"
+    echo "%F{245}$(left_triangle)%f%K{245}%F{00} $TIME %k%F{245}$(right_triangle)%f"
   fi
 }
 
