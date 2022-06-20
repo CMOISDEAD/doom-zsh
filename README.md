@@ -13,6 +13,7 @@
 </div>
 
 ## Themes
+To select a specific theme switch branches on github and select the theme or the full version.
 
 #### Rainbow
 
@@ -24,12 +25,13 @@
 
 ## Features
 
-- Current Vi-mode mode ([with handy aliases for temporarily enabling](./docs/options.md#vi-mode-vi_mode)).
-- Optional exit-code of last command ([how to enable](./docs/options.md#exit-code-exit_code)).
-- Optional time stamps 12/24hr in format ([how to enable](./docs/options.md#time-time)).
-- Execution time of the last command if it exceeds the set threshold.
-- Optional AWS now supports aws-vault ([aws-vault](https://github.com/99designs/aws-vault))
-  Want more features? Please, [open an issue](https://github.com/spaceship-prompt/spaceship-prompt/issues/new/choose) or send pull request.
+- Multiple themes
+- Display node.js, rust, python, ruby (and more) version.
+- Multiple customizable sections.
+- Customizable order.
+- Very fast git update thanks to [romkatv](https://github.com/romkatv/gitstatus).
+- Create your own section.
+- and more!
 
 ## Requirements
 
