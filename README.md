@@ -1,4 +1,4 @@
-![Doom-zsh](./assets/main.jpg)
+![Doom-zsh](./assets/main.png)
 
 <h2 align="center">The Doom zsh theme</h2>
 
