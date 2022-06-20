@@ -1,5 +1,5 @@
 #
-# Doom ZSH (a spaceship (and more...) inspiration theme)
+# Doom ZSH (a spaceship (and more...) inspiration) theme.
 #
 # Author: Camilo Davila, godemperordoom.com
 # License: MIT
@@ -9,22 +9,28 @@
 # ROOT VARIABLE
 # Set a root path of 
 # ------------------------------------------------------------------------------
+
 DOOM_ROOT="$HOME/.oh-my-zsh/custom/themes/doom"
 
 # ------------------------------------------------------------------------------
-# GIT STATUS
-# Sourcing Git Status Plugin
+# SETUP
+# Setup requirements for prompt
 # ------------------------------------------------------------------------------
-source "$DOOM_ROOT/gitstatus/gitstatus.prompt.zsh"
-source "$DOOM_ROOT/sections/zvm.zsh"
 
-DOOM_SECTIONS=(
-  jobs          # Background jobs indicator
-  #user          # Username section
+DOOM_SECTIONS_LEFT=(
+  time           # Time stampts section
+  user           # Username section
+  #host          # Hostname section
+  dir            # Current directory section
+  #node          # Node.js section
+  #rust          # Rust section
+  #aws           # Amazon Web Services section
+  #pyenv         # Pyenv section
+
+# --------- TODO: This sections still on work.
   #gradle        # Gradle section
   #maven         # Maven section
   #package       # Package version
-  node          # Node.js section
   #ruby          # Ruby section
   #elm           # Elm section
   #elixir        # Elixir section
@@ -32,34 +38,69 @@ DOOM_SECTIONS=(
   #swift         # Swift section
   #golang        # Go section
   #php           # PHP section
-  rust          # Rust section
   #haskell       # Haskell Stack section
   #julia         # Julia section
   #docker        # Docker section
-  #aws           # Amazon Web Services section
   #gcloud        # Google Cloud Platform section
   #venv          # virtualenv section
   #conda         # conda virtualenv section
-  pyenv         # Pyenv section
   #dotnet        # .NET section
   #ember         # Ember.js section
+  #kubectl       # Kubectl context section
+  #terraform     # Terraform workspace section
   #ibmcloud      # IBM Cloud section
+# ---------
+
+  exec_time     # Execution time
+  #vi_mode       # Vi-mode indicator
+  #jobs          # Background jobs indicator
+  new_line      # Line break
+  status        # Last command return status.
+  char          # Prompt character
+)
+
+DOOM_SECTIONS_RIGHT=(
+  gitstatus      # Git section ( branch status )
   #battery       # Battery level and status
 )
 
 # ------------------------------------------------------------------------------
-# SECTIONS
-# Sourcing sections the prompt consists of
+# SOURCE SECTIONS
+# Sourcing sections of prompt order
 # ------------------------------------------------------------------------------
-for section in $DOOM_SECTIONS
-do
-  source "$DOOM_ROOT/sections/$section.zsh"
+
+for section in "${DOOM_SECTIONS_LEFT[@]}" "${DOOM_SECTIONS_RIGHT[@]}"; do
+  if [[ -f "$DOOM_ROOT/sections/$section.zsh" ]]; then
+    source "$DOOM_ROOT/sections/$section.zsh"
+  else
+    echo "Section '$section' was not loaded."
+  fi 
 done
 
-prompt_section(){ #HACK: I feel this a litle bit slow
+# ------------------------------------------------------------------------------
+# PROMPTS
+# An entry point of prompt
+# ------------------------------------------------------------------------------
+
+doom_prompt(){
+  # Retrieve exit code of last command to use in status and char
+  RETVAL=$?
   prompt=""
-  [[ -z $DOOM_SECTIONS ]] && return
-  for section in $DOOM_SECTIONS
+
+  [[ -z $DOOM_SECTIONS_LEFT ]] && return
+  for section in $DOOM_SECTIONS_LEFT
+  do
+    prompt+="$(doom_$section)"
+  done
+
+  echo $prompt
+}
+
+doom_rprompt() {
+  prompt=""
+
+  [[ -z $DOOM_SECTIONS_RIGHT ]] && return
+  for section in $DOOM_SECTIONS_RIGHT
   do
     prompt+="$(doom_$section)"
   done
@@ -67,86 +108,10 @@ prompt_section(){ #HACK: I feel this a litle bit slow
   echo $prompt
 }
 
+PROMPT='$(doom_prompt)'
+RPROMPT='$(doom_rprompt)'
+
 # ------------------------------------------------------------------------------
 # VARIABLES
 # Mis of variables
 # ------------------------------------------------------------------------------
-
-# Section segments
-RIGHT_SEPARATOR=""
-LEFT_SEPARATOR=""
-CONNECTION_1="╭"
-CONNECTION_2="─"
-CONNECTION_3="╰"
-CONNECTION_4="─"
-
-# Variable
-TIME="0s"
-
-# ------------------------------------------------------------------------------
-# SETUP
-# Setup requirements for prompt
-# ------------------------------------------------------------------------------
-
-right_triangle() {
-   echo $'\ue0b0'
-}
-
-left_triangle() {
-   echo $'\ue0b2'
-}
-
-preexec() {
-  timer=${timer:-$SECONDS}
-}
-
-precmd() {
-  if [ $timer ]; then
-    timer_show=$(($SECONDS - $timer))
-    export TIME="${timer_show}s"
-    unset timer
-  fi
-}
-
-prompt_status(){
-  echo "%F{255}$(left_triangle)%f%K{255}%F{00} %(?..%{$fg[red]%}%f)  %f%k%F{00}%K{255}$(left_triangle)%f%k"
-}
-
-prompt_shell(){
-  echo "%F{255}$(left_triangle)%f%K{255}%F{00}  %n %F{00}$(left_triangle)%f%k"
-}
-
-prompt_dev_status(){
-  echo "%F{blue}$(left_triangle)%f%F{255}%K{blue}$(prompt_section)%F{00}$(left_triangle)%f%k"
-}
-
-prompt_exectime(){
-  if [[ $TIME ]]; then
-    echo "%F{245}$(left_triangle)%f%K{245}%F{00} $TIME %k%F{245}$(right_triangle)%f"
-  fi
-}
-
-prompt_git(){
-  if [[ -n $(git_prompt_info) ]]; then
-    echo "%F{blue}$(left_triangle)%f%K{blue}%F{255}  on%f $GITSTATUS_PROMPT %k%F{blue}$(right_triangle)%f"
-  fi
-}
-
-prompt_time(){
-  echo "%F{13}  %t |%f"
-}
-
-prompt_dir(){
-  echo "%F{33} %0~ |%f"
-}
-
-# ------------------------------------------------------------------------------
-# PROMPTS
-# An entry point of prompt
-# ------------------------------------------------------------------------------
-
-PROMPT='$(prompt_status)$(prompt_shell)$(prompt_dev_status)$(prompt_exectime)
-%F{245}$CONNECTION_1$CONNECTION_2%f $(prompt_time) $(prompt_dir) $(doom_vi_mode)
-%F{245}$CONNECTION_3$CONNECTION_4%f '
-
-RPROMPT='$(prompt_git)'

@@ -11,13 +11,13 @@ source $HOME/.oh-my-zsh/custom/themes/doom/sections/helpers/exists.zsh
 # Configuration
 # ------------------------------------------------------------------------------
 VI_MODE_SHOW="${VI_MODE_SHOW=true}"
-VI_MODE_PREFIX="${VI_MODE_PREFIX=" Vi-Mode:"}"
-VI_MODE_SUFFIX="${VI_MODE_SUFFIX="$PROMPT_DEFAULT_SUFFIX"}"
-VI_MODE_INSERT="${VI_MODE_INSERT="Insert"}"
-VI_MODE_NORMAL="${VI_MODE_NORMAL="Normal"}"
-VI_MODE_VISUAL="${VI_MODE_VISUAL="Visual"}"
-VI_MODE_VISUAL_LINE="${VI_MODE_VISUAL_LINE="Visual-L"}"
-VI_MODE_REPLACE="${VI_MODE_REPLACE="Replace"}"
+VI_MODE_PREFIX="${VI_MODE_PREFIX="--"}"
+VI_MODE_SUFFIX="${VI_MODE_SUFFIX="--"}"
+VI_MODE_INSERT="${VI_MODE_INSERT="INSERT"}"
+VI_MODE_NORMAL="${VI_MODE_NORMAL="NORMAL"}"
+VI_MODE_VISUAL="${VI_MODE_VISUAL="VISUAL"}"
+VI_MODE_VISUAL_LINE="${VI_MODE_VISUAL_LINE="VISUAL-L"}"
+VI_MODE_REPLACE="${VI_MODE_REPLACE="REPLACE"}"
 
 # ------------------------------------------------------------------------------
 # Section

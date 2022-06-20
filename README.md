@@ -1,5 +1,5 @@
+![Doom-zsh](./assets/main.jpg)
 
-![Doom-zsh](./main.png)
 <h2 align="center">The Doom zsh theme</h2>
 
 <div align="center">
@@ -11,15 +11,25 @@
     <a href="https://spaceship-prompt.sh/api">API</a>
   </h5>
 </div>
- 
-  
+
+## Themes
+
+#### Rainbow
+
+![doom-zsh-rainbow](./assets/rainbow.png)
+
+#### Pure
+
+![doom-zsh-pure](./assets/pure.png)
+
 ## Features
+
 - Current Vi-mode mode ([with handy aliases for temporarily enabling](./docs/options.md#vi-mode-vi_mode)).
 - Optional exit-code of last command ([how to enable](./docs/options.md#exit-code-exit_code)).
 - Optional time stamps 12/24hr in format ([how to enable](./docs/options.md#time-time)).
 - Execution time of the last command if it exceeds the set threshold.
 - Optional AWS now supports aws-vault ([aws-vault](https://github.com/99designs/aws-vault))
-Want more features? Please, [open an issue](https://github.com/spaceship-prompt/spaceship-prompt/issues/new/choose) or send pull request.
+  Want more features? Please, [open an issue](https://github.com/spaceship-prompt/spaceship-prompt/issues/new/choose) or send pull request.
 
 ## Requirements
 
@@ -29,6 +39,7 @@ To work correctly, you will first need:
 - [Powerline Font](https://github.com/powerline/fonts) must be installed and used in your terminal (for example, switch font to [Fira Code](https://github.com/tonsky/FiraCode)).
 
 ## Installing
+
 Now that the requirements are satisfied, you can install Spaceship ZSH via any of the following tools.
 
 ### [oh-my-zsh]
