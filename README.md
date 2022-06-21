@@ -4,13 +4,14 @@
 
 <div align="center">
   <h5>
-    <a href="https://spaceship-prompt.sh">Website</a> |
-    <a href="https://spaceship-prompt.sh/getting-started">Installing</a> |
+    <a href="#installing">Installing</a> |
     <a href="#features">Features</a> |
-    <a href="https://spaceship-prompt.sh/options">Options</a> |
-    <a href="https://spaceship-prompt.sh/api">API</a>
+    <a href="#options">Options</a>
   </h5>
 </div>
+
+## Overview
+A zsh theme for developers, fully customizable and compatible with different development ecosystems, seamlessly integrated with git.
 
 ## Themes
 To select a specific theme switch branches on github and select the theme or the full version.
@@ -64,5 +65,5 @@ Set `ZSH_THEME="doom"` in your `.zshrc`.
 
 Here's a list of related projects that have been inspired by Spaceship ZSH.
 
-- [**matchai/spacefish**](https://github.com/matchai/spacefish) - A port of Spaceship ZSH for fish shell intending to achieve complete feature parity.
+- [**spaceship-prompt/spaceship-prompt**](https://github.com/spaceship-prompt/spaceship-prompt) - Spaceship is a minimalistic, powerful and extremely customizable Zsh prompt. It combines everything you may need for convenient work, without unnecessary complications, like a real spaceship.
 - [**starship/starship**](https://github.com/starship/starship) - A blazing-fast, cross-shell prompt written in Rust, heavily inspired by Spaceship ZSH.
