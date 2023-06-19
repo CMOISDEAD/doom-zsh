@@ -7,10 +7,11 @@
 
 # ------------------------------------------------------------------------------
 # ROOT VARIABLE
-# Set a root path of 
+# Set a root path of
 # ------------------------------------------------------------------------------
 
-DOOM_ROOT="$HOME/.oh-my-zsh/custom/themes/doom"
+# DOOM_ROOT="$HOME/.oh-my-zsh/custom/themes/doom"
+DOOM_ROOT="$HOME/Documents/git/doom-prompt"
 
 # ------------------------------------------------------------------------------
 # SETUP
@@ -18,16 +19,16 @@ DOOM_ROOT="$HOME/.oh-my-zsh/custom/themes/doom"
 # ------------------------------------------------------------------------------
 
 DOOM_SECTIONS_LEFT=(
-  time           # Time stampts section
-  user           # Username section
+  time # Time stampts section
+  user # Username section
   #host          # Hostname section
-  dir            # Current directory section
+  dir # Current directory section
   #node          # Node.js section
   #rust          # Rust section
   #aws           # Amazon Web Services section
   #pyenv         # Pyenv section
 
-# --------- TODO: This sections still on work.
+  # --------- TODO: This sections still on work.
   #gradle        # Gradle section
   #maven         # Maven section
   #package       # Package version
@@ -49,18 +50,18 @@ DOOM_SECTIONS_LEFT=(
   #kubectl       # Kubectl context section
   #terraform     # Terraform workspace section
   #ibmcloud      # IBM Cloud section
-# ---------
+  # ---------
 
-  exec_time     # Execution time
+  exec_time # Execution time
   #vi_mode       # Vi-mode indicator
   #jobs          # Background jobs indicator
-  new_line      # Line break
-  status        # Last command return status.
-  char          # Prompt character
+  new_line # Line break
+  status   # Last command return status.
+  char     # Prompt character
 )
 
 DOOM_SECTIONS_RIGHT=(
-  gitstatus      # Git section ( branch status )
+  gitstatus # Git section ( branch status )
   #battery       # Battery level and status
 )
 
@@ -74,7 +75,7 @@ for section in "${DOOM_SECTIONS_LEFT[@]}" "${DOOM_SECTIONS_RIGHT[@]}"; do
     source "$DOOM_ROOT/sections/$section.zsh"
   else
     echo "Section '$section' was not loaded."
-  fi 
+  fi
 done
 
 # ------------------------------------------------------------------------------
@@ -82,14 +83,13 @@ done
 # An entry point of prompt
 # ------------------------------------------------------------------------------
 
-doom_prompt(){
+doom_prompt() {
   # Retrieve exit code of last command to use in status and char
   RETVAL=$?
   prompt=""
 
   [[ -z $DOOM_SECTIONS_LEFT ]] && return
-  for section in $DOOM_SECTIONS_LEFT
-  do
+  for section in $DOOM_SECTIONS_LEFT; do
     prompt+="$(doom_$section)"
   done
 
@@ -100,11 +100,10 @@ doom_rprompt() {
   prompt=""
 
   [[ -z $DOOM_SECTIONS_RIGHT ]] && return
-  for section in $DOOM_SECTIONS_RIGHT
-  do
+  for section in $DOOM_SECTIONS_RIGHT; do
     prompt+="$(doom_$section)"
   done
- 
+
   echo $prompt
 }
 
