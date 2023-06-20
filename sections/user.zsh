@@ -7,7 +7,7 @@
 # ------------------------------------------------------------------------------
 
 # --------------------------------------------------------------------------
-# | SPACESHIP_USER_SHOW | show username on local | show username on remote |
+# | DOOM_USER_SHOW      | show username on local | show username on remote |
 # |---------------------+------------------------+-------------------------|
 # | false               | never                  | never                   |
 # | always              | always                 | always                  |
@@ -15,32 +15,32 @@
 # | needed              | if needed              | if needed               |
 # --------------------------------------------------------------------------
 
-SPACESHIP_USER_SHOW="${SPACESHIP_USER_SHOW=always}"
-SPACESHIP_USER_PREFIX="${SPACESHIP_USER_PREFIX=" "}"
-SPACESHIP_USER_SUFFIX="${SPACESHIP_USER_SUFFIX=""}"
-SPACESHIP_USER_COLOR="${SPACESHIP_USER_COLOR="blue"}"
-SPACESHIP_USER_COLOR_ROOT="${SPACESHIP_USER_COLOR_ROOT="red"}"
+DOOM_USER_SHOW="${DOOM_USER_SHOW=always}"
+DOOM_USER_PREFIX="${DOOM_USER_PREFIX=" "}"
+DOOM_USER_SUFFIX="${DOOM_USER_SUFFIX=""}"
+DOOM_USER_COLOR="${DOOM_USER_COLOR="blue"}"
+DOOM_USER_COLOR_ROOT="${DOOM_USER_COLOR_ROOT="red"}"
 
 # ------------------------------------------------------------------------------
 # Section
 # ------------------------------------------------------------------------------
 
 doom_user() {
-  [[ $SPACESHIP_USER_SHOW == false ]] && return
+  [[ $DOOM_USER_SHOW == false ]] && return
 
-  if [[ $SPACESHIP_USER_SHOW == 'always' ]] \
+  if [[ $DOOM_USER_SHOW == 'always' ]] \
   || [[ $LOGNAME != $USER ]] \
   || [[ $UID == 0 ]] \
-  || [[ $SPACESHIP_USER_SHOW == true && -n $SSH_CONNECTION ]]
+  || [[ $DOOM_USER_SHOW == true && -n $SSH_CONNECTION ]]
   then
     local 'user_color'
 
     if [[ $USER == 'root' ]]; then
-      user_color="%F{$SPACESHIP_USER_COLOR_ROOT}"
+      user_color="%F{$DOOM_USER_COLOR_ROOT}"
     else
-      user_color="%F{$SPACESHIP_USER_COLOR}"
+      user_color="%F{$DOOM_USER_COLOR}"
     fi
 
-    echo "$user_color$SPACESHIP_USER_PREFIX%n$SPACESHIP_USER_SUFFIX%f"
+    echo "$user_color$DOOM_USER_PREFIX%n$DOOM_USER_SUFFIX%f"
   fi
 }

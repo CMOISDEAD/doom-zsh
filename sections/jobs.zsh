@@ -5,20 +5,20 @@
 # ------------------------------------------------------------------------------
 # Helpers
 # ------------------------------------------------------------------------------
-source $HOME/.oh-my-zsh/custom/themes/doom/sections/helpers/exists.zsh
+source $DOOM_ROOT/sections/helpers/exists.zsh
 
 # ------------------------------------------------------------------------------
 # Configuration
 # ------------------------------------------------------------------------------
 
-SPACESHIP_JOBS_SHOW="${SPACESHIP_JOBS_SHOW=true}"
-SPACESHIP_JOBS_PREFIX="${SPACESHIP_JOBS_PREFIX=""}"
-SPACESHIP_JOBS_SUFFIX="${SPACESHIP_JOBS_SUFFIX=""}"
-SPACESHIP_JOBS_SYMBOL="${SPACESHIP_JOBS_SYMBOL="✦"}"
-SPACESHIP_JOBS_COLOR="${SPACESHIP_JOBS_COLOR="123"}"
-SPACESHIP_JOBS_AMOUNT_PREFIX="${SPACESHIP_JOBS_AMOUNT_PREFIX=""}"
-SPACESHIP_JOBS_AMOUNT_SUFFIX="${SPACESHIP_JOBS_AMOUNT_SUFFIX=""}"
-SPACESHIP_JOBS_AMOUNT_THRESHOLD="${SPACESHIP_JOBS_AMOUNT_THRESHOLD=1}"
+DOOM_JOBS_SHOW="${DOOM_JOBS_SHOW=true}"
+DOOM_JOBS_PREFIX="${DOOM_JOBS_PREFIX=""}"
+DOOM_JOBS_SUFFIX="${DOOM_JOBS_SUFFIX=""}"
+DOOM_JOBS_SYMBOL="${DOOM_JOBS_SYMBOL="✦"}"
+DOOM_JOBS_COLOR="${DOOM_JOBS_COLOR="123"}"
+DOOM_JOBS_AMOUNT_PREFIX="${DOOM_JOBS_AMOUNT_PREFIX=""}"
+DOOM_JOBS_AMOUNT_SUFFIX="${DOOM_JOBS_AMOUNT_SUFFIX=""}"
+DOOM_JOBS_AMOUNT_THRESHOLD="${DOOM_JOBS_AMOUNT_THRESHOLD=1}"
 
 # ------------------------------------------------------------------------------
 # Section
@@ -26,21 +26,21 @@ SPACESHIP_JOBS_AMOUNT_THRESHOLD="${SPACESHIP_JOBS_AMOUNT_THRESHOLD=1}"
 
 # Show icon if there's a working jobs in the background
 doom_jobs() { # NOTE: Weird left space on symbol.
-  [[ $SPACESHIP_JOBS_SHOW == false ]] && return
+  [[ $DOOM_JOBS_SHOW == false ]] && return
 
   local jobs_amount=$( jobs -d | awk '!/pwd/' | wc -l | tr -d " ")
 
   [[ $jobs_amount -gt 0 ]] || return
 
-  if [[ $jobs_amount -le $SPACESHIP_JOBS_AMOUNT_THRESHOLD ]]; then
+  if [[ $jobs_amount -le $DOOM_JOBS_AMOUNT_THRESHOLD ]]; then
     jobs_amount=''
-    SPACESHIP_JOBS_AMOUNT_PREFIX=''
-    SPACESHIP_JOBS_AMOUNT_SUFFIX=''
+    DOOM_JOBS_AMOUNT_PREFIX=''
+    DOOM_JOBS_AMOUNT_SUFFIX=''
   fi
 
   echo \
-    "%F{$SPACESHIP_JOBS_COLOR}" \
-    "$SPACESHIP_JOBS_PREFIX" \
-    "${SPACESHIP_JOBS_SYMBOL}${SPACESHIP_JOBS_AMOUNT_PREFIX}${jobs_amount}${SPACESHIP_JOBS_AMOUNT_SUFFIX}" \
-    "$SPACESHIP_JOBS_SUFFIX%f"
+    "%F{$DOOM_JOBS_COLOR}" \
+    "$DOOM_JOBS_PREFIX" \
+    "${DOOM_JOBS_SYMBOL}${DOOM_JOBS_AMOUNT_PREFIX}${jobs_amount}${DOOM_JOBS_AMOUNT_SUFFIX}" \
+    "$DOOM_JOBS_SUFFIX%f"
 }

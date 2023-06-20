@@ -6,12 +6,12 @@
 # Configuration
 # ------------------------------------------------------------------------------
 
-SPACESHIP_HOST_SHOW="${SPACESHIP_HOST_SHOW=always}"
-SPACESHIP_HOST_SHOW_FULL="${SPACESHIP_HOST_SHOW_FULL=false}"
-SPACESHIP_HOST_PREFIX="${SPACESHIP_HOST_PREFIX="@"}"
-SPACESHIP_HOST_SUFFIX="${SPACESHIP_HOST_SUFFIX=""}"
-SPACESHIP_HOST_COLOR="${SPACESHIP_HOST_COLOR="yellow"}"
-SPACESHIP_HOST_COLOR_SSH="${SPACESHIP_HOST_COLOR_SSH="green"}"
+DOOM_HOST_SHOW="${DOOM_HOST_SHOW=always}"
+DOOM_HOST_SHOW_FULL="${DOOM_HOST_SHOW_FULL=false}"
+DOOM_HOST_PREFIX="${DOOM_HOST_PREFIX="@"}"
+DOOM_HOST_SUFFIX="${DOOM_HOST_SUFFIX=""}"
+DOOM_HOST_COLOR="${DOOM_HOST_COLOR="yellow"}"
+DOOM_HOST_COLOR_SSH="${DOOM_HOST_COLOR_SSH="green"}"
 
 # ------------------------------------------------------------------------------
 # Section
@@ -19,24 +19,24 @@ SPACESHIP_HOST_COLOR_SSH="${SPACESHIP_HOST_COLOR_SSH="green"}"
 
 # If there is an ssh connections, current machine name.
 doom_host() {
-  [[ $SPACESHIP_HOST_SHOW == false ]] && return
+  [[ $DOOM_HOST_SHOW == false ]] && return
 
-  if [[ $SPACESHIP_HOST_SHOW == 'always' ]] || [[ -n $SSH_CONNECTION ]]; then
+  if [[ $DOOM_HOST_SHOW == 'always' ]] || [[ -n $SSH_CONNECTION ]]; then
     local host_color host
 
     # Determination of what color should be used
     if [[ -n $SSH_CONNECTION ]]; then
-      host_color=$SPACESHIP_HOST_COLOR_SSH
+      host_color=$DOOM_HOST_COLOR_SSH
     else
-      host_color=$SPACESHIP_HOST_COLOR
+      host_color=$DOOM_HOST_COLOR
     fi
 
-    if [[ $SPACESHIP_HOST_SHOW_FULL == true ]]; then
+    if [[ $DOOM_HOST_SHOW_FULL == true ]]; then
       host="%M"
     else
       host="%m"
     fi
 
-    echo "$SPACESHIP_HOST_PREFIX$host" 
+    echo "$DOOM_HOST_PREFIX$host" 
   fi
 }

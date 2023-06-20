@@ -7,23 +7,23 @@
 # ------------------------------------------------------------------------------
 # Helpers
 # ------------------------------------------------------------------------------
-source $HOME/.oh-my-zsh/custom/themes/doom/sections/helpers/exists.zsh
+source $DOOM_ROOT/sections/helpers/exists.zsh
 
 # ------------------------------------------------------------------------------
 # Configuration
 # ------------------------------------------------------------------------------
-SPACESHIP_AWS_SHOW="${SPACESHIP_AWS_SHOW=true}"
-SPACESHIP_AWS_PREFIX="${SPACESHIP_AWS_PREFIX="using "}"
-SPACESHIP_AWS_SUFFIX="${SPACESHIP_AWS_SUFFIX="$SPACESHIP_PROMPT_DEFAULT_SUFFIX"}"
-SPACESHIP_AWS_SYMBOL="${SPACESHIP_AWS_SYMBOL="☁️ "}"
-SPACESHIP_AWS_COLOR="${SPACESHIP_AWS_COLOR="208"}"
+DOOM_AWS_SHOW="${DOOM_AWS_SHOW=true}"
+DOOM_AWS_PREFIX="${DOOM_AWS_PREFIX="using "}"
+DOOM_AWS_SUFFIX="${DOOM_AWS_SUFFIX="$SPACESHIP_PROMPT_DEFAULT_SUFFIX"}"
+DOOM_AWS_SYMBOL="${DOOM_AWS_SYMBOL="☁️ "}"
+DOOM_AWS_COLOR="${DOOM_AWS_COLOR="208"}"
 
 # ------------------------------------------------------------------------------
 # Section
 # ------------------------------------------------------------------------------
 
 doom_aws() {
-  [[ $SPACESHIP_AWS_SHOW == false ]] && return
+  [[ $DOOM_AWS_SHOW == false ]] && return
 
   # Check if the AWS-cli is installed
   exists aws || return
@@ -33,8 +33,8 @@ doom_aws() {
 
   # Show prompt section
   echo \
-    "%F{$SPACESHIP_AWS_COLOR}" \
-    "$SPACESHIP_AWS_PREFIX" \
-    "${SPACESHIP_AWS_SYMBOL}$AWS_PROFILE" \
-    "$SPACESHIP_AWS_SUFFIX%f"
+    "%F{$DOOM_AWS_COLOR}" \
+    "$DOOM_AWS_PREFIX" \
+    "${DOOM_AWS_SYMBOL}$AWS_PROFILE" \
+    "$DOOM_AWS_SUFFIX%f"
 }

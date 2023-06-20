@@ -7,17 +7,17 @@
 # ------------------------------------------------------------------------------
 # Helpers
 # ------------------------------------------------------------------------------
-source $HOME/.oh-my-zsh/custom/themes/doom/sections/helpers/exists.zsh
+source $DOOM_ROOT/sections/helpers/exists.zsh
 
 # ------------------------------------------------------------------------------
 # Configuration
 # ------------------------------------------------------------------------------
-SPACESHIP_NODE_SHOW="${SPACESHIP_NODE_SHOW=true}"
-SPACESHIP_NODE_PREFIX="${SPACESHIP_NODE_PREFIX="$SPACESHIP_PROMPT_DEFAULT_PREFIX"}"
-SPACESHIP_NODE_SUFFIX="${SPACESHIP_NODE_SUFFIX="$SPACESHIP_PROMPT_DEFAULT_SUFFIX"}"
-SPACESHIP_NODE_SYMBOL="${SPACESHIP_NODE_SYMBOL="⬢ "}"
-SPACESHIP_NODE_DEFAULT_VERSION="${SPACESHIP_NODE_DEFAULT_VERSION=""}"
-SPACESHIP_NODE_COLOR="${SPACESHIP_NODE_COLOR="46"}"
+DOOM_NODE_SHOW="${DOOM_NODE_SHOW=true}"
+DOOM_NODE_PREFIX="${SPACESHIP_NODE_PREFIX="$SPACESHIP_PROMPT_DEFAULT_PREFIX"}"
+DOOM_NODE_SUFFIX="${SPACESHIP_NODE_SUFFIX="$SPACESHIP_PROMPT_DEFAULT_SUFFIX"}"
+DOOM_NODE_SYMBOL="${SPACESHIP_NODE_SYMBOL="⬢ "}"
+DOOM_NODE_DEFAULT_VERSION="${SPACESHIP_NODE_DEFAULT_VERSION=""}"
+DOOM_NODE_COLOR="${SPACESHIP_NODE_COLOR="46"}"
 
 # ------------------------------------------------------------------------------
 # Section
@@ -25,7 +25,7 @@ SPACESHIP_NODE_COLOR="${SPACESHIP_NODE_COLOR="46"}"
 
 # Show current version of node, exception system.
 doom_node() {
-  [[ $SPACESHIP_NODE_SHOW == false ]] && return
+  [[ $DOOM_NODE_SHOW == false ]] && return
 
   # Show NODE status only for JS-specific folders
   [[ -f package.json || -d node_modules ]] || return
@@ -47,11 +47,11 @@ doom_node() {
     return
   fi
 
-  [[ $node_version == $SPACESHIP_NODE_DEFAULT_VERSION ]] && return
+  [[ $node_version == $DOOM_NODE_DEFAULT_VERSION ]] && return
 
   echo \
-    "%F{$SPACESHIP_NODE_COLOR}" \
-    "$SPACESHIP_NODE_PREFIX" \
-    "${SPACESHIP_NODE_SYMBOL}${node_version}" \
-    "$SPACESHIP_NODE_SUFFIX%f"
+    "%F{$DOOM_NODE_COLOR}" \
+    "$DOOM_NODE_PREFIX" \
+    "${DOOM_NODE_SYMBOL}${node_version}" \
+    "$DOOM_NODE_SUFFIX%f"
 }

@@ -22,19 +22,19 @@ SPACESHIP_CHAR_COLOR_SECONDARY="${SPACESHIP_CHAR_COLOR_SECONDARY="yellow"}"
 # Paint $PROMPT_SYMBOL in red if previous command was fail and
 # paint in green if everything was OK.
 doom_char() {
-  local 'color' 'char'
+    local 'color' 'char' 
 
-  if [[ $RETVAL -eq 0 ]]; then
-    color="$SPACESHIP_CHAR_COLOR_SUCCESS"
-  else
-    color="$SPACESHIP_CHAR_COLOR_FAILURE"
-  fi
+    if [[ $RETVAL -ne 0 ]]; then
+        color="$SPACESHIP_CHAR_COLOR_FAILURE"
+    else
+        color="$SPACESHIP_CHAR_COLOR_SUCCESS"
+    fi
 
-  if [[ $UID -eq 0 ]]; then
-    char="$SPACESHIP_CHAR_SYMBOL_ROOT"
-  else
-    char="$SPACESHIP_CHAR_SYMBOL"
-  fi
+    if [[ $UID -eq 0 ]]; then
+        char="$SPACESHIP_CHAR_SYMBOL_ROOT"
+    else
+        char="$SPACESHIP_CHAR_SYMBOL"
+    fi
 
-  echo "%F{$color}$SPACESHIP_CHAR_PREFIX$char$SPACESHIP_CHAR_SUFFIX%f"
+    echo "%F{$color}$SPACESHIP_CHAR_PREFIX$char$SPACESHIP_CHAR_SUFFIX%f"
 }
