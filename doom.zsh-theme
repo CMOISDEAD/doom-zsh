@@ -1,13 +1,13 @@
 #
 # Doom ZSH (a spaceship (and more...) inspiration) theme.
 #
-# Author: Camilo Davila, godemperordoom.com
+# Author: CMOISDEAD, camilodavila.vercel.app
 # License: MIT
 # https://github.com/CMOISDEAD/doom-zsh
 
 # ------------------------------------------------------------------------------
-# ROOT VARIABLE
-# Set a root path of the theme
+# VARIABLE
+# set global variables
 # ------------------------------------------------------------------------------
 
 # DOOM_ROOT="$HOME/.oh-my-zsh/custom/themes/doom"
@@ -15,7 +15,7 @@ DOOM_ROOT="$HOME/Documents/git/doom-prompt"
 
 # ------------------------------------------------------------------------------
 # SETUP
-# Setup requirements for prompt
+# setup requirements of the prompt
 # ------------------------------------------------------------------------------
 
 DOOM_SECTIONS_LEFT=(
@@ -25,10 +25,17 @@ DOOM_SECTIONS_LEFT=(
 	dir # Current directory section
 	node          # Node.js section
 	rust          # Rust section
-	#aws           # Amazon Web Services section
 	pyenv         # Pyenv section
+	#aws           # Amazon Web Services section
 
-	# --------- TODO: This sections still on work.
+	exec_time # Execution time
+	#vi_mode       # Vi-mode indicator
+	#jobs          # Background jobs indicator
+	new_line # Line break
+	status   # Last command return status.
+	char     # Prompt character
+
+	# NOTE: this sections still on work.
 	#gradle        # Gradle section
 	#maven         # Maven section
 	#package       # Package version
@@ -50,14 +57,7 @@ DOOM_SECTIONS_LEFT=(
 	#kubectl       # Kubectl context section
 	#terraform     # Terraform workspace section
 	#ibmcloud      # IBM Cloud section
-	# ---------
 
-	exec_time # Execution time
-	#vi_mode       # Vi-mode indicator
-	#jobs          # Background jobs indicator
-	new_line # Line break
-	status   # Last command return status.
-	char     # Prompt character
 )
 
 DOOM_SECTIONS_RIGHT=(
@@ -71,7 +71,7 @@ DOOM_LIBS=(
 
 # ------------------------------------------------------------------------------
 # SOURCE SECTIONS
-# Sourcing sections of prompt order
+# sourcing sections, hooks, etc
 # ------------------------------------------------------------------------------
 
 # Load internals
@@ -90,7 +90,7 @@ done
 
 # ------------------------------------------------------------------------------
 # PROMPTS
-# An entry point of prompt
+# entry point of prompts
 # ------------------------------------------------------------------------------
 
 doom_prompt() {
@@ -120,8 +120,8 @@ PROMPT='$(doom_prompt)'
 RPROMPT='$(doom_rprompt)'
 
 # ------------------------------------------------------------------------------
-# VARIABLES
-# Mis of variables
+# HOOKS
+# add custom hooks functions
 # ------------------------------------------------------------------------------
 
 add-zsh-hook preexec prompt_doom_preexec

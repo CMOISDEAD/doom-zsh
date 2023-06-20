@@ -11,9 +11,11 @@
 </div>
 
 ## Overview
+
 A zsh theme for developers, fully customizable and compatible with different development ecosystems, seamlessly integrated with git.
 
 ## Themes
+
 To select a specific theme switch branches on github and select the theme or the full version.
 
 #### Rainbow
@@ -40,12 +42,23 @@ To work correctly, you will first need:
 
 - [`zsh`](http://www.zsh.org/) (v5.2 or recent) must be installed.
 - [Powerline Font](https://github.com/powerline/fonts) must be installed and used in your terminal (for example, switch font to [Fira Code](https://github.com/tonsky/FiraCode)).
+- [`gitstatus (romkatv)`](https://github.com/romkatv/gitstatus#using-from-zsh) romkatv gitstatus project.
 
 ## Installing
 
 Now that the requirements are satisfied, you can install Spaceship ZSH via any of the following tools.
 
 ### [oh-my-zsh]
+
+## install the gitstatus
+
+```zsh
+git clone --depth=1 https://github.com/romkatv/gitstatus.git ~/gitstatus
+```
+
+add this `source ~/gitstatus/gitstatus.prompt.zsh` at the begging of your ~/.zshrc file.
+
+## install the theme
 
 Clone this repo:
 
