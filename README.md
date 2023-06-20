@@ -48,9 +48,7 @@ To work correctly, you will first need:
 
 Now that the requirements are satisfied, you can install Spaceship ZSH via any of the following tools.
 
-### [oh-my-zsh]
-
-## install the gitstatus
+## install the gitstatus (if you dont have...)
 
 ```zsh
 git clone --depth=1 https://github.com/romkatv/gitstatus.git ~/gitstatus
@@ -63,13 +61,13 @@ add this `source ~/gitstatus/gitstatus.prompt.zsh` at the begging of your ~/.zsh
 Clone this repo:
 
 ```zsh
-git clone https://github.com/CMOISDEAD/doom-zsh.git "$ZSH_CUSTOM/themes/doom-prompt" --depth=1
+git clone https://github.com/CMOISDEAD/doom-zsh.git "$ZSH_CUSTOM/themes/doom" --depth=1
 ```
 
 Symlink `doom.zsh-theme` to your oh-my-zsh custom themes directory:
 
 ```zsh
-ln -s "$ZSH_CUSTOM/themes/doom-prompt/doom.zsh-theme" "$ZSH_CUSTOM/themes/doom.zsh-theme"
+ln -s "$ZSH_CUSTOM/themes/doom/doom.zsh-theme" "$ZSH_CUSTOM/themes/doom.zsh-theme"
 ```
 
 Set `ZSH_THEME="doom"` in your `.zshrc`.
