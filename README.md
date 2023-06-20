@@ -22,7 +22,7 @@ To select a specific theme switch branches on github and select the theme or the
 
 ![doom-zsh-rainbow](./assets/rainbow.png)
 
-#### Pure
+#### Pure (actually on the master branch)
 
 ![doom-zsh-pure](./assets/pure.png)
 

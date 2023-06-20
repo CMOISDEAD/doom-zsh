@@ -19,21 +19,22 @@ DOOM_ROOT="$HOME/Documents/git/doom-prompt"
 # ------------------------------------------------------------------------------
 
 DOOM_SECTIONS_LEFT=(
-	time # Time stampts section
-	user # Username section
-	#host          # Hostname section
-	dir # Current directory section
-	node          # Node.js section
-	rust          # Rust section
-	pyenv         # Pyenv section
-	#aws           # Amazon Web Services section
+	logo           # Custom logo
+	time           # Time stampts section
+	user           # Username section
+	#host           # Hostname section
+	dir            # Current directory section
+	node           # Node.js section
+	rust           # Rust section
+	pyenv          # Pyenv section
+	#aws            # Amazon Web Services section
 
-	exec_time # Execution time
-	#vi_mode       # Vi-mode indicator
-	#jobs          # Background jobs indicator
-	new_line # Line break
-	status   # Last command return status.
-	char     # Prompt character
+	exec_time      # Execution time
+	#vi_mode        # Vi-mode indicator
+	#jobs           # Background jobs indicator
+	new_line       # Line break
+	status         # Last command return status.
+	char           # Prompt character
 
 	# NOTE: this sections still on work.
 	#gradle        # Gradle section
@@ -57,7 +58,6 @@ DOOM_SECTIONS_LEFT=(
 	#kubectl       # Kubectl context section
 	#terraform     # Terraform workspace section
 	#ibmcloud      # IBM Cloud section
-
 )
 
 DOOM_SECTIONS_RIGHT=(
