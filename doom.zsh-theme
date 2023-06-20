@@ -10,8 +10,7 @@
 # set global variables
 # ------------------------------------------------------------------------------
 
-# DOOM_ROOT="$HOME/.oh-my-zsh/custom/themes/doom"
-DOOM_ROOT="$HOME/Documents/git/doom-prompt"
+DOOM_ROOT="$HOME/.oh-my-zsh/custom/themes/doom"
 
 # ------------------------------------------------------------------------------
 # SETUP
