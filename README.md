@@ -1,12 +1,14 @@
-![Doom-zsh](./assets/main.png)
+![main](https://github.com/CMOISDEAD/doom-zsh/assets/51010598/e85a3310-8f37-486c-b69a-5ef361492f17)
 
-<h2 align="center">The Doom zsh theme</h2>
+<h3 align="center">The Doom zsh theme</h2>
 
 <div align="center">
   <h5>
-    <a href="#installing">Installing</a> |
-    <a href="#features">Features</a> |
-    <a href="#options">Options</a>
+    [
+    <a href="#features">Features</a> /
+    <a href="#installing">Installing</a> /
+    <a href="#related">Options</a>
+    ]
   </h5>
 </div>
 
@@ -20,11 +22,11 @@ To select a specific theme switch branches on github and select the theme or the
 
 #### Rainbow
 
-![doom-zsh-rainbow](./assets/rainbow.png)
+![rainbow](https://github.com/CMOISDEAD/doom-zsh/assets/51010598/594700cd-65d7-4064-b655-a0d467caf180)
 
 #### Pure (actually on the master branch)
 
-![doom-zsh-pure](./assets/pure.png)
+![pure](https://github.com/CMOISDEAD/doom-zsh/assets/51010598/c04e995c-864f-4234-9858-ae1dea626b96)
 
 ## Features
 
@@ -32,7 +34,7 @@ To select a specific theme switch branches on github and select the theme or the
 - Display node.js, rust, python, ruby (and more) version.
 - Multiple customizable sections.
 - Customizable order.
-- Very fast git update thanks to [romkatv](https://github.com/romkatv/gitstatus).
+- Very fast git integration thanks to [romkatv](https://github.com/romkatv/gitstatus).
 - Create your own section.
 - and more!
 
@@ -72,7 +74,7 @@ ln -s "$ZSH_CUSTOM/themes/doom/doom.zsh-theme" "$ZSH_CUSTOM/themes/doom.zsh-them
 
 Set `ZSH_THEME="doom"` in your `.zshrc`.
 
-## Related Projects
+## Related
 
 Here's a list of related projects that have been inspired by Spaceship ZSH.
 
