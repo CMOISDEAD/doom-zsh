@@ -13,6 +13,15 @@
 DOOM_ROOT="$HOME/.oh-my-zsh/custom/themes/doom"
 
 # ------------------------------------------------------------------------------
+# GITSTATUS.PLUGIN
+# initialize gitstatus.plugin
+# ------------------------------------------------------------------------------
+
+# the flags enable unstaget, untracked and more counters.
+gitstatus_stop 'MY' && gitstatus_start -s -1 -u -1 -c -1 -d -1 'MY'
+gitstatus_query -d $PWD MY
+
+# ------------------------------------------------------------------------------
 # SETUP
 # setup requirements of the prompt
 # ------------------------------------------------------------------------------
@@ -21,7 +30,7 @@ DOOM_SECTIONS_LEFT=(
 	logo           # Custom logo
 	time           # Time stampts section
 	user           # Username section
-	#host           # Hostname section
+	host           # Hostname section
 	dir            # Current directory section
 	node           # Node.js section
 	rust           # Rust section
@@ -35,7 +44,7 @@ DOOM_SECTIONS_LEFT=(
 	status         # Last command return status.
 	char           # Prompt character
 
-	# NOTE: this sections still on work.
+	# NOTE: this sections still on work. (help wanted)
 	#gradle        # Gradle section
 	#maven         # Maven section
 	#package       # Package version

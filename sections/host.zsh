@@ -6,7 +6,7 @@
 # Configuration
 # ------------------------------------------------------------------------------
 
-DOOM_HOST_SHOW="${DOOM_HOST_SHOW=always}"
+DOOM_HOST_SHOW="${DOOM_HOST_SHOW=true}"
 DOOM_HOST_SHOW_FULL="${DOOM_HOST_SHOW_FULL=false}"
 DOOM_HOST_PREFIX="${DOOM_HOST_PREFIX="@"}"
 DOOM_HOST_SUFFIX="${DOOM_HOST_SUFFIX=""}"
