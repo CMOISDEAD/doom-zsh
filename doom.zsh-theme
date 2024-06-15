@@ -45,6 +45,7 @@ DOOM_SECTIONS_LEFT=(
 	char           # Prompt character
 
 	# NOTE: this sections still on work. (help wanted)
+	
 	#gradle        # Gradle section
 	#maven         # Maven section
 	#package       # Package version
