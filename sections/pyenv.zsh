@@ -13,15 +13,15 @@ source $DOOM_ROOT/sections/helpers/exists.zsh
 # Configuration
 # ------------------------------------------------------------------------------
 
-SPACESHIP_PYENV_SHOW="${SPACESHIP_PYENV_SHOW=true}"
-SPACESHIP_PYENV_SYMBOL="${SPACESHIP_PYENV_SYMBOL=""}"
+DOOM_PYENV_SHOW="${DOOM_PYENV_SHOW=true}"
+DOOM_PYENV_SYMBOL="${DOOM_PYENV_SYMBOL=""}"
 
 # ------------------------------------------------------------------------------
 # Section
 # ------------------------------------------------------------------------------
 
 doom_pyenv() {
-  [[ $SPACESHIP_PYENV_SHOW == false ]] && return
+  [[ $DOOM_PYENV_SHOW == false ]] && return
 
   # Show pyenv python version only for Python-specific folders
   [[ -n "$PYENV_VERSION" || -f .python-version || -f requirements.txt || -f pyproject.toml || -f *.py ]] || return
@@ -32,6 +32,6 @@ doom_pyenv() {
 
   echo \
     "%F{220}" \
-    "${SPACESHIP_PYENV_SYMBOL} ${pyenv_status}" \
+    "${DOOM_PYENV_SYMBOL} ${pyenv_status}" \
     "%f"
 }

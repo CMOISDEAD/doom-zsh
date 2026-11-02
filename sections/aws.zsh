@@ -14,7 +14,7 @@ source $DOOM_ROOT/sections/helpers/exists.zsh
 # ------------------------------------------------------------------------------
 DOOM_AWS_SHOW="${DOOM_AWS_SHOW=true}"
 DOOM_AWS_PREFIX="${DOOM_AWS_PREFIX="using "}"
-DOOM_AWS_SUFFIX="${DOOM_AWS_SUFFIX="$SPACESHIP_PROMPT_DEFAULT_SUFFIX"}"
+DOOM_AWS_SUFFIX="${DOOM_AWS_SUFFIX=""}"
 DOOM_AWS_SYMBOL="${DOOM_AWS_SYMBOL="☁️ "}"
 DOOM_AWS_COLOR="${DOOM_AWS_COLOR="208"}"
 
