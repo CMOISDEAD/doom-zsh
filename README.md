@@ -2,10 +2,7 @@
 
 <p align="center">A minimal, clear and useful zsh prompt.</p>
 
-```text
-~/projects/api node v22.11.0 took 4s                 main ⇡1 !2 ?1
-✘ 1 ❯
-```
+<p align="center"><img src="assets/prompt.png" alt="doom-zsh prompt in a Rust project during a merge conflict"></p>
 
 ## Philosophy
 
