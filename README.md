@@ -18,7 +18,7 @@ If a tool is not installed, its section stays hidden. Everything is configured f
 ## Requirements
 
 - zsh 5.3 or newer
-- git, for the git section
+- git 2.35 or newer, for the git section
 
 ## Installation
 
@@ -80,6 +80,8 @@ The lists above are the defaults. For a single-line prompt, remove `new_line`.
 | Symbol       | Meaning                    |
 | ------------ | -------------------------- |
 | `⇣3` `⇡2`    | Behind, ahead of upstream  |
+| `*1`         | Stashes                    |
+| `merge`      | Merge, rebase, cherry-pick, revert or bisect in progress |
 | `~1`         | Conflicts                  |
 | `+1`         | Staged changes             |
 | `!1`         | Unstaged changes           |

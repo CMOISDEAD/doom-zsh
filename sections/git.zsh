@@ -2,6 +2,23 @@ DOOM_GIT_SHOW="${DOOM_GIT_SHOW=true}"
 DOOM_GIT_PREFIX="${DOOM_GIT_PREFIX=""}"
 DOOM_GIT_SUFFIX="${DOOM_GIT_SUFFIX=""}"
 
+doom_git_action() {
+  local dir=$(command git rev-parse --git-dir 2>/dev/null)
+
+  REPLY=
+  if [[ -d $dir/rebase-merge || -d $dir/rebase-apply ]]; then
+    REPLY=rebase
+  elif [[ -f $dir/MERGE_HEAD ]]; then
+    REPLY=merge
+  elif [[ -f $dir/CHERRY_PICK_HEAD ]]; then
+    REPLY=cherry-pick
+  elif [[ -f $dir/REVERT_HEAD ]]; then
+    REPLY=revert
+  elif [[ -f $dir/BISECT_LOG ]]; then
+    REPLY=bisect
+  fi
+}
+
 doom_git_query() {
   typeset -g DOOM_GIT_status=
 
@@ -10,10 +27,10 @@ doom_git_query() {
   (( $+commands[git] )) || return
 
   local output
-  output=$(command git --no-optional-locks status --porcelain=v2 --branch 2>/dev/null) || return
+  output=$(command git --no-optional-locks status --porcelain=v2 --branch --show-stash 2>/dev/null) || return
 
   local line branch commit
-  local -i ahead behind conflicted staged unstaged untracked
+  local -i ahead behind conflicted staged unstaged untracked stashes
   local -a fields
 
   for line in ${(f)output}; do
@@ -26,6 +43,7 @@ doom_git_query() {
         ahead=${fields[3]#+}
         behind=${fields[4]#-}
         ;;
+      '# stash '*) stashes=${line##* } ;;
       '1 '*|'2 '*)
         [[ $line[3] == . ]] || (( ++staged ))
         [[ $line[4] == . ]] || (( ++unstaged ))
@@ -46,6 +64,9 @@ doom_git_query() {
   (( behind )) && p+=" %F{blue}⇣$behind%f"
   (( ahead && !behind )) && p+=" "
   (( ahead )) && p+="%F{green}⇡$ahead%f"
+  (( stashes )) && p+=" %F{cyan}*$stashes%f"
+  doom_git_action
+  [[ -n $REPLY ]] && p+=" %F{red}$REPLY%f"
   (( conflicted )) && p+=" %F{red}~$conflicted%f"
   (( staged )) && p+=" %F{green}+$staged%f"
   (( unstaged )) && p+=" %F{yellow}!$unstaged%f"
