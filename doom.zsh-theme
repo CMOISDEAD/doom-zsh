@@ -26,7 +26,7 @@ setopt prompt_subst prompt_percent
 
 DOOM_SEPARATOR="${DOOM_SEPARATOR=" "}"
 
-(( ${+DOOM_SECTIONS_RIGHT} )) || typeset -ga DOOM_SECTIONS_RIGHT=(gitstatus)
+(( ${+DOOM_SECTIONS_RIGHT} )) || typeset -ga DOOM_SECTIONS_RIGHT=(git)
 
 () {
 	local file
@@ -35,7 +35,7 @@ DOOM_SEPARATOR="${DOOM_SEPARATOR=" "}"
 	done
 }
 
-gitstatus_stop 'MY' && gitstatus_start -s -1 -u -1 -c -1 -d -1 'MY'
+doom_git_init
 
 PROMPT='${DOOM_PROMPT}'
 RPROMPT='${DOOM_RPROMPT}'

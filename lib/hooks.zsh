@@ -10,6 +10,6 @@ doom_precmd() {
   doom_exec_time_stop
   [[ $DOOM_CACHE_PATH == $PATH ]] || doom_cache_clear
   typeset -g DOOM_CACHE_PATH=$PATH
-  gitstatus_query -d $PWD MY
+  doom_git_query
   doom_render_prompts
 }

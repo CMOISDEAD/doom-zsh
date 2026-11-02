@@ -2,7 +2,7 @@ DOOM_GIT_SHOW="${DOOM_GIT_SHOW=true}"
 DOOM_GIT_PREFIX="${DOOM_GIT_PREFIX=""}"
 DOOM_GIT_SUFFIX="${DOOM_GIT_SUFFIX=""}"
 
-doom_gitstatus() {
+doom_git() {
   [[ $DOOM_GIT_SHOW == false ]] && return
   [[ $VCS_STATUS_RESULT == ok-sync ]] || return
 
