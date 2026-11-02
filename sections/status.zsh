@@ -1,24 +1,12 @@
-#
-# Exit code
-#
-# Show exit code of last executed command
-
-# ------------------------------------------------------------------------------
-# Configuration
-# ------------------------------------------------------------------------------
-
-DOOM_EXIT_CODE_SHOW="${DOOM_EXIT_CODE_SHOW=true}"
-DOOM_EXIT_CODE_PREFIX="${DOOM_EXIT_CODE_PREFIX=""}"
-DOOM_EXIT_CODE_SUFFIX="${DOOM_EXIT_CODE_SUFFIX=""}"
-DOOM_EXIT_CODE_SYMBOL="${DOOM_EXIT_CODE_SYMBOL="✘"}"
-DOOM_EXIT_CODE_COLOR="${DOOM_EXIT_CODE_COLOR="red"}"
-
-# ------------------------------------------------------------------------------
-# Section
-# ------------------------------------------------------------------------------
+DOOM_STATUS_SHOW="${DOOM_STATUS_SHOW=true}"
+DOOM_STATUS_PREFIX="${DOOM_STATUS_PREFIX=""}"
+DOOM_STATUS_SUFFIX="${DOOM_STATUS_SUFFIX=""}"
+DOOM_STATUS_SYMBOL="${DOOM_STATUS_SYMBOL="✘ "}"
+DOOM_STATUS_COLOR="${DOOM_STATUS_COLOR="red"}"
 
 doom_status() {
-  [[ $DOOM_EXIT_CODE_SHOW == false || $RETVAL == 0 ]] && return
+  [[ $DOOM_STATUS_SHOW == false ]] && return
+  (( DOOM_RETVAL )) || return
 
-  echo "%F{$DOOM_EXIT_CODE_COLOR}${DOOM_EXIT_CODE_PREFIX}${DOOM_EXIT_CODE_SYMBOL} $RETVAL${DOOM_EXIT_CODE_SUFFIX}%f "
+  doom_segment STATUS "$DOOM_RETVAL"
 }

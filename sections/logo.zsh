@@ -1,24 +1,11 @@
-#
-# Logo
-#
-# Custom logo, pimp your prompt
-
-# ------------------------------------------------------------------------------
-# Configuration
-# ------------------------------------------------------------------------------
-
-LOGO_SHOW="${LOGO_SHOW=true}"
-LOGO_CONTENT="${LOGO_CONTENT="󰘧"}"
-LOGO_PREFIX="${LOGO_PREFIX=" "}"
-LOGO_SUFFIX="${LOGO_SUFFIX=" "}"
-
-# ------------------------------------------------------------------------------
-# Section
-# ------------------------------------------------------------------------------
-
+DOOM_LOGO_SHOW="${DOOM_LOGO_SHOW=true}"
+DOOM_LOGO_SYMBOL="${DOOM_LOGO_SYMBOL="󰘧"}"
+DOOM_LOGO_PREFIX="${DOOM_LOGO_PREFIX=""}"
+DOOM_LOGO_SUFFIX="${DOOM_LOGO_SUFFIX=""}"
+DOOM_LOGO_COLOR="${DOOM_LOGO_COLOR=""}"
 
 doom_logo() {
-  [[ $LOGO_SHOW == true ]] || return
+  [[ $DOOM_LOGO_SHOW == false ]] && return
 
-  echo -n "${LOGO_PREFIX}${LOGO_CONTENT}${LOGO_SUFFIX}"
+  doom_segment LOGO ""
 }

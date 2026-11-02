@@ -24,6 +24,8 @@ setopt prompt_subst prompt_percent
 	char
 )
 
+DOOM_SEPARATOR="${DOOM_SEPARATOR=" "}"
+
 (( ${+DOOM_SECTIONS_RIGHT} )) || typeset -ga DOOM_SECTIONS_RIGHT=(gitstatus)
 
 () {
@@ -35,24 +37,8 @@ setopt prompt_subst prompt_percent
 
 gitstatus_stop 'MY' && gitstatus_start -s -1 -u -1 -c -1 -d -1 'MY'
 
-doom_prompt() {
-	local section output
-	for section in $DOOM_SECTIONS_LEFT; do
-		(( $+functions[doom_$section] )) && output+="$(doom_$section)"
-	done
-	print -r -- "$output"
-}
+PROMPT='${DOOM_PROMPT}'
+RPROMPT='${DOOM_RPROMPT}'
 
-doom_rprompt() {
-	local section output
-	for section in $DOOM_SECTIONS_RIGHT; do
-		(( $+functions[doom_$section] )) && output+="$(doom_$section)"
-	done
-	print -r -- "$output"
-}
-
-PROMPT='$(doom_prompt)'
-RPROMPT='$(doom_rprompt)'
-
-add-zsh-hook preexec prompt_doom_preexec
-add-zsh-hook precmd prompt_doom_precmd
+add-zsh-hook preexec doom_preexec
+add-zsh-hook precmd doom_precmd

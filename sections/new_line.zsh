@@ -1,26 +1,7 @@
-#
-# New Line
-#
-# Common-used variable for new line separator
-
-# ------------------------------------------------------------------------------
-# Configuration
-# ------------------------------------------------------------------------------
-
-LINE_SHOW="${LINE_SHOW=true}"
-LINE_PREFIX="${LINE_PREFIX=""}"
-LINE_SUFFIX="${LINE_SUFFIX=""}"
-
-# ------------------------------------------------------------------------------
-# Section
-# ------------------------------------------------------------------------------
-
+DOOM_NEW_LINE_SHOW="${DOOM_NEW_LINE_SHOW=true}"
 
 doom_new_line() {
-  [[ $LINE_SHOW == true ]] || return
+  [[ $DOOM_NEW_LINE_SHOW == false ]] && return
 
-  NEWLINE='
-  '
-
-  echo -n "$NEWLINE"
+  REPLY=$'\n'
 }

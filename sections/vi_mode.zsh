@@ -1,56 +1,25 @@
-#
-# zvm-plugin
-#
-
-# ------------------------------------------------------------------------------
-# Helpers
-# ------------------------------------------------------------------------------
-source $DOOM_ROOT/sections/helpers/exists.zsh
-
-# ------------------------------------------------------------------------------
-# Configuration
-# ------------------------------------------------------------------------------
-VI_MODE_SHOW="${VI_MODE_SHOW=true}"
-VI_MODE_PREFIX="${VI_MODE_PREFIX="--"}"
-VI_MODE_SUFFIX="${VI_MODE_SUFFIX="--"}"
-VI_MODE_INSERT="${VI_MODE_INSERT="INSERT"}"
-VI_MODE_NORMAL="${VI_MODE_NORMAL="NORMAL"}"
-VI_MODE_VISUAL="${VI_MODE_VISUAL="VISUAL"}"
-VI_MODE_VISUAL_LINE="${VI_MODE_VISUAL_LINE="VISUAL-L"}"
-VI_MODE_REPLACE="${VI_MODE_REPLACE="REPLACE"}"
-
-# ------------------------------------------------------------------------------
-# Section
-# ------------------------------------------------------------------------------
+DOOM_VI_MODE_SHOW="${DOOM_VI_MODE_SHOW=true}"
+DOOM_VI_MODE_PREFIX="${DOOM_VI_MODE_PREFIX="--"}"
+DOOM_VI_MODE_SUFFIX="${DOOM_VI_MODE_SUFFIX="--"}"
+DOOM_VI_MODE_COLOR="${DOOM_VI_MODE_COLOR="76"}"
+DOOM_VI_MODE_INSERT="${DOOM_VI_MODE_INSERT="INSERT"}"
+DOOM_VI_MODE_NORMAL="${DOOM_VI_MODE_NORMAL="NORMAL"}"
+DOOM_VI_MODE_VISUAL="${DOOM_VI_MODE_VISUAL="VISUAL"}"
+DOOM_VI_MODE_VISUAL_LINE="${DOOM_VI_MODE_VISUAL_LINE="VISUAL-L"}"
+DOOM_VI_MODE_REPLACE="${DOOM_VI_MODE_REPLACE="REPLACE"}"
 
 doom_vi_mode() {
-  [[ $VI_MODE_SHOW == true ]] || return
+  [[ $DOOM_VI_MODE_SHOW == false ]] && return
+  bindkey | grep -q vi-quoted-insert || return
 
-  if bindkey | grep "vi-quoted-insert" > /dev/null 2>&1; then # check if vi-mode enabled
-    local mode_indicator="${VI_MODE_INSERT}"
+  local mode=$DOOM_VI_MODE_INSERT
 
-    case "$ZVM_MODE" in
-      $ZVM_MODE_INSERT)
-      mode_indicator="${VI_MODE_INSERT}"
-      ;;
-      $ZVM_MODE_NORMAL)
-      mode_indicator="${VI_MODE_NORMAL}"
-      ;;
-      $ZVM_MODE_VISUAL)
-      mode_indicator="${VI_MODE_VISUAL}"
-      ;;
-      $ZVM_MODE_VISUAL_LINE)
-        mode_indicator="${VI_MODE_VISUAL_LINE}"
-      ;;
-      $ZVM_MODE_REPLACE)
-        mode_indicator="${VI_MODE_REPLACE}"
-      ;;
-    esac
+  [[ -n $ZVM_MODE ]] && case $ZVM_MODE in
+    $ZVM_MODE_NORMAL) mode=$DOOM_VI_MODE_NORMAL ;;
+    $ZVM_MODE_VISUAL) mode=$DOOM_VI_MODE_VISUAL ;;
+    $ZVM_MODE_VISUAL_LINE) mode=$DOOM_VI_MODE_VISUAL_LINE ;;
+    $ZVM_MODE_REPLACE) mode=$DOOM_VI_MODE_REPLACE ;;
+  esac
 
-    echo \
-      "%F{76}" \
-      "$VI_MODE_PREFIX" \
-      "$mode_indicator" \
-      "$VI_MODE_SUFFIX%f"
-  fi
+  doom_segment VI_MODE "$mode"
 }

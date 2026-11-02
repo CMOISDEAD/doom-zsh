@@ -1,44 +1,17 @@
-#
-# Rust
-#
-# Rust is a systems programming language sponsored by Mozilla Research.
-# Link: https://www.rust-lang.org
-
-# ------------------------------------------------------------------------------
-# Helpers
-# ------------------------------------------------------------------------------
-source $DOOM_ROOT/sections/helpers/exists.zsh
-
-# ------------------------------------------------------------------------------
-# Configuration
-# ------------------------------------------------------------------------------
-
-RUST_SHOW="${RUST_SHOW=true}"
-RUST_PREFIX="${RUST_PREFIX="$PROMPT_DEFAULT_PREFIX"}"
-RUST_SUFFIX="${RUST_SUFFIX="$PROMPT_DEFAULT_SUFFIX"}"
-RUST_SYMBOL="${RUST_SYMBOL="%F{09}%f "}"
-RUST_VERBOSE_VERSION="${RUST_VERBOSE_VERSION=false}"
-
-# ------------------------------------------------------------------------------
-# Section
-# ------------------------------------------------------------------------------
+DOOM_RUST_SHOW="${DOOM_RUST_SHOW=true}"
+DOOM_RUST_PREFIX="${DOOM_RUST_PREFIX=""}"
+DOOM_RUST_SUFFIX="${DOOM_RUST_SUFFIX=""}"
+DOOM_RUST_SYMBOL="${DOOM_RUST_SYMBOL=" "}"
+DOOM_RUST_COLOR="${DOOM_RUST_COLOR="09"}"
+DOOM_RUST_VERBOSE_VERSION="${DOOM_RUST_VERBOSE_VERSION=false}"
 
 doom_rust() {
-  [[ $RUST_SHOW == false ]] && return
-
-  # If there are Rust-specific files in current directory
+  [[ $DOOM_RUST_SHOW == false ]] && return
   [[ -f Cargo.toml ]] || return
+  (( $+commands[rustc] )) || return
 
-  exists rustc || return
+  local version=${${(s: :)"$(rustc --version 2>/dev/null)"}[2]}
+  [[ $DOOM_RUST_VERBOSE_VERSION == true ]] || version=${version%%-*}
 
-  local rust_version=$(rustc --version | cut -d' ' -f2)
-
-  if [[ $RUST_VERBOSE_VERSION == false ]]; then
-  	local rust_version=$(echo $rust_version | cut -d'-' -f1) # Cut off -suffixes from version. "v1.30.0-beta.11" or "v1.30.0-nightly"
-  fi
-
-  echo \
-    "$RUST_PREFIX" \
-    "${RUST_SYMBOL}v${rust_version}" \
-    "$RUST_SUFFIX"
+  doom_segment RUST "v$version"
 }

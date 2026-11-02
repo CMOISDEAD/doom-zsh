@@ -1,37 +1,16 @@
-#
-# pyenv
-#
-# pyenv lets you easily switch between multiple versions of Python.
-# Link: https://github.com/pyenv/pyenv
-
-# ------------------------------------------------------------------------------
-# Helpers
-# ------------------------------------------------------------------------------
-source $DOOM_ROOT/sections/helpers/exists.zsh
-
-# ------------------------------------------------------------------------------
-# Configuration
-# ------------------------------------------------------------------------------
-
 DOOM_PYENV_SHOW="${DOOM_PYENV_SHOW=true}"
-DOOM_PYENV_SYMBOL="${DOOM_PYENV_SYMBOL=""}"
-
-# ------------------------------------------------------------------------------
-# Section
-# ------------------------------------------------------------------------------
+DOOM_PYENV_PREFIX="${DOOM_PYENV_PREFIX=""}"
+DOOM_PYENV_SUFFIX="${DOOM_PYENV_SUFFIX=""}"
+DOOM_PYENV_SYMBOL="${DOOM_PYENV_SYMBOL=" "}"
+DOOM_PYENV_COLOR="${DOOM_PYENV_COLOR="220"}"
 
 doom_pyenv() {
   [[ $DOOM_PYENV_SHOW == false ]] && return
 
-  # Show pyenv python version only for Python-specific folders
-  [[ -n "$PYENV_VERSION" || -f .python-version || -f requirements.txt || -f pyproject.toml || -f *.py ]] || return
+  local -a sources=((.python-version|requirements.txt|pyproject.toml|*.py)(N[1]))
+  [[ -n $PYENV_VERSION || -n $sources ]] || return
 
-  exists pyenv || return # Do nothing if pyenv is not installed
+  (( $+commands[pyenv] )) || return
 
-  local pyenv_status=${$(pyenv version-name 2>/dev/null)//:/ }
-
-  echo \
-    "%F{220}" \
-    "${DOOM_PYENV_SYMBOL} ${pyenv_status}" \
-    "%f"
+  doom_segment PYENV "${$(pyenv version-name 2>/dev/null)//:/ }"
 }
