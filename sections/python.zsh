@@ -4,6 +4,10 @@ DOOM_PYTHON_SUFFIX="${DOOM_PYTHON_SUFFIX=""}"
 DOOM_PYTHON_SYMBOL="${DOOM_PYTHON_SYMBOL="py "}"
 DOOM_PYTHON_COLOR="${DOOM_PYTHON_COLOR="220"}"
 
+if [[ $DOOM_PYTHON_SHOW != false ]] && (( $DOOM_SECTIONS_LEFT[(I)python] || $DOOM_SECTIONS_RIGHT[(I)python] )); then
+  export VIRTUAL_ENV_DISABLE_PROMPT=1
+fi
+
 doom_python() {
   [[ $DOOM_PYTHON_SHOW == false ]] && return
 
