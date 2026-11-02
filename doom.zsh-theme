@@ -1,112 +1,58 @@
-#
-# Doom ZSH (a spaceship (and more...) inspiration) theme.
+# Doom ZSH theme
 #
 # Author: CMOISDEAD, camilodavila.vercel.app
 # License: MIT
 # https://github.com/CMOISDEAD/doom-zsh
 
-# ------------------------------------------------------------------------------
-# VARIABLE
-# set global variables
-# ------------------------------------------------------------------------------
+typeset -g DOOM_ROOT=${${(%):-%x}:A:h}
 
-DOOM_ROOT="$HOME/.oh-my-zsh/custom/themes/doom"
+autoload -Uz add-zsh-hook
+setopt prompt_subst prompt_percent
 
-# ------------------------------------------------------------------------------
-# GITSTATUS.PLUGIN
-# initialize gitstatus.plugin
-# ------------------------------------------------------------------------------
+(( ${+DOOM_SECTIONS_LEFT} )) || typeset -ga DOOM_SECTIONS_LEFT=(
+	logo
+	time
+	user
+	host
+	dir
+	node
+	rust
+	pyenv
+	exec_time
+	new_line
+	status
+	char
+)
 
-# the flags enable unstaget, untracked and more counters.
+(( ${+DOOM_SECTIONS_RIGHT} )) || typeset -ga DOOM_SECTIONS_RIGHT=(gitstatus)
+
+() {
+	local file
+	for file in "$DOOM_ROOT"/lib/*.zsh(N) "$DOOM_ROOT"/sections/*.zsh(N); do
+		builtin source "$file"
+	done
+}
+
 gitstatus_stop 'MY' && gitstatus_start -s -1 -u -1 -c -1 -d -1 'MY'
-gitstatus_query -d $PWD MY
-
-# ------------------------------------------------------------------------------
-# SETUP
-# setup requirements of the prompt
-# ------------------------------------------------------------------------------
-
-DOOM_SECTIONS_LEFT=(
-	logo           # Custom logo
-	time           # Time stampts section
-	user           # Username section
-	host           # Hostname section
-	dir            # Current directory section
-	node           # Node.js section
-	rust           # Rust section
-	pyenv          # Pyenv section
-	#aws            # Amazon Web Services section
-
-	exec_time      # Execution time
-	#vi_mode        # Vi-mode indicator
-	#jobs           # Background jobs indicator
-	new_line       # Line break
-	status         # Last command return status.
-	char           # Prompt character
-)
-
-DOOM_SECTIONS_RIGHT=(
-	gitstatus # Git section ( branch status )
-)
-
-DOOM_LIBS=(
-	"lib/hooks.zsh" # Zsh hooks
-)
-
-# ------------------------------------------------------------------------------
-# SOURCE SECTIONS
-# sourcing sections, hooks, etc
-# ------------------------------------------------------------------------------
-
-# Load internals
-for lib in "${DOOM_LIBS[@]}"; do
-	builtin source "$DOOM_ROOT/$lib"
-done
-
-# Load sections
-for section in "${DOOM_SECTIONS_LEFT[@]}" "${DOOM_SECTIONS_RIGHT[@]}"; do
-	if [[ -f "$DOOM_ROOT/sections/$section.zsh" ]]; then
-		source "$DOOM_ROOT/sections/$section.zsh"
-	else
-		echo "Section '$section' was not loaded."
-	fi
-done
-
-# ------------------------------------------------------------------------------
-# PROMPTS
-# entry point of prompts
-# ------------------------------------------------------------------------------
 
 doom_prompt() {
-	# Retrieve exit code of last command to use in status and char
-	prompt=""
-
-	[[ -z $DOOM_SECTIONS_LEFT ]] && return
+	local section output
 	for section in $DOOM_SECTIONS_LEFT; do
-		prompt+="$(doom_$section)"
+		(( $+functions[doom_$section] )) && output+="$(doom_$section)"
 	done
-
-	echo $prompt
+	print -r -- "$output"
 }
 
 doom_rprompt() {
-	rprompt=""
-
-	[[ -z $DOOM_SECTIONS_RIGHT ]] && return
+	local section output
 	for section in $DOOM_SECTIONS_RIGHT; do
-		rprompt+="$(doom_$section)"
+		(( $+functions[doom_$section] )) && output+="$(doom_$section)"
 	done
-
-	echo $rprompt
+	print -r -- "$output"
 }
 
 PROMPT='$(doom_prompt)'
 RPROMPT='$(doom_rprompt)'
-
-# ------------------------------------------------------------------------------
-# HOOKS
-# add custom hooks functions
-# ------------------------------------------------------------------------------
 
 add-zsh-hook preexec prompt_doom_preexec
 add-zsh-hook precmd prompt_doom_precmd
