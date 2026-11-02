@@ -1,69 +1,158 @@
-![main](https://github.com/CMOISDEAD/doom-zsh/assets/51010598/e85a3310-8f37-486c-b69a-5ef361492f17)
+<h1 align="center">doom-zsh</h1>
 
-<h3 align="center">The Doom zsh theme</h2>
+<p align="center">A minimal, clear and useful zsh prompt.</p>
 
-<div align="center">
-  <h5>
-    [
-    <a href="#features">Features</a> /
-    <a href="#installing">Installing</a> /
-    <a href="#related">Options</a>
-    ]
-  </h5>
-</div>
+```text
+~/projects/api node v22.11.0 took 4s                 main ⇡1 !2 ?1
+✘ 1 ❯
+```
 
-## Overview
+## Philosophy
 
-A zsh theme for developers, fully customizable and compatible with different development ecosystems, seamlessly integrated with git.
+- **Minimal.** Few sections, little code, no required dependencies and no special fonts.
+- **Clear.** Every element means one thing, and nothing is there for decoration.
+- **Useful.** A section appears only when it matters: a failed command, a slow command, a project's toolchain, a remote host.
 
-## Features
-
-- Display node.js, rust, python, ruby (and more) version.
-- Multiple customizable sections.
-- Customizable order.
-- Very fast git integration thanks to [romkatv](https://github.com/romkatv/gitstatus).
-- Create your own section.
-- and more!
+If a tool is not installed, its section stays hidden. Everything is configured from your `.zshrc`, so you never have to edit the theme.
 
 ## Requirements
 
-To work correctly, you will first need:
+- zsh 5.3 or newer
+- git, for the git section
 
-- [`zsh`](http://www.zsh.org/) (v5.2 or recent) must be installed.
-- [Powerline Font](https://github.com/powerline/fonts) must be installed and used in your terminal (for example, switch font to [Fira Code](https://github.com/tonsky/FiraCode)).
-- [`gitstatus (romkatv)`](https://github.com/romkatv/gitstatus#using-from-zsh) romkatv gitstatus project.
+## Installation
 
-## Installing
+### Plain zsh
 
-Now that the requirements are satisfied, you can install Spaceship ZSH via any of the following tools.
+```zsh
+git clone --depth=1 https://github.com/CMOISDEAD/doom-zsh.git ~/.zsh/doom
+echo 'source ~/.zsh/doom/doom.zsh-theme' >> ~/.zshrc
+```
 
-## install the gitstatus (if you dont have...)
+### Oh My Zsh
+
+```zsh
+git clone --depth=1 https://github.com/CMOISDEAD/doom-zsh.git "${ZSH_CUSTOM:-$HOME/.oh-my-zsh/custom}/themes/doom"
+```
+
+Then set `ZSH_THEME="doom/doom"` in your `.zshrc`.
+
+### Plugin managers
+
+| Manager  | Line for your `.zshrc`                    |
+| -------- | ----------------------------------------- |
+| zinit    | `zinit light CMOISDEAD/doom-zsh`          |
+| zplug    | `zplug "CMOISDEAD/doom-zsh", as:theme`    |
+| antidote | `antidote bundle CMOISDEAD/doom-zsh`      |
+
+### Faster git status (optional)
+
+The git section uses the `git` command by default. In very large repositories, install [gitstatus](https://github.com/romkatv/gitstatus) and doom uses it automatically:
 
 ```zsh
 git clone --depth=1 https://github.com/romkatv/gitstatus.git ~/gitstatus
 ```
 
-add this `source ~/gitstatus/gitstatus.prompt.zsh` at the begging of your ~/.zshrc file.
+doom looks in `~/gitstatus`, the powerlevel10k theme and `/usr/share`. Set `DOOM_GITSTATUS_DIR` for any other location.
 
-## install the theme
+## Sections
 
-Clone this repo:
-
-```zsh
-git clone https://github.com/CMOISDEAD/doom-zsh.git "$ZSH_CUSTOM/themes/doom" --depth=1
-```
-
-Symlink `doom.zsh-theme` to your oh-my-zsh custom themes directory:
+Set these lists before loading the theme to choose and order what you see:
 
 ```zsh
-ln -s "$ZSH_CUSTOM/themes/doom/doom.zsh-theme" "$ZSH_CUSTOM/themes/doom.zsh-theme"
+DOOM_SECTIONS_LEFT=(user host dir node rust python exec_time jobs new_line status char)
+DOOM_SECTIONS_RIGHT=(git)
 ```
 
-Set `ZSH_THEME="doom"` in your `.zshrc`.
+The lists above are the defaults. For a single-line prompt, remove `new_line`.
 
-## Related
+| Section     | Shows                                       | Enabled |
+| ----------- | ------------------------------------------- | ------- |
+| `user`      | Username, when it is worth noting           | Yes     |
+| `host`      | Hostname over SSH                           | Yes     |
+| `dir`       | Current directory                           | Yes     |
+| `node`      | Node.js version in JavaScript projects      | Yes     |
+| `rust`      | Rust version in Cargo projects              | Yes     |
+| `python`    | Python version and active virtualenv        | Yes     |
+| `exec_time` | Duration of slow commands                   | Yes     |
+| `jobs`      | Background jobs                             | Yes     |
+| `new_line`  | Line break                                  | Yes     |
+| `status`    | Exit code of a failed command               | Yes     |
+| `char`      | Prompt character, red after a failure       | Yes     |
+| `git`       | Branch and repository status                | Yes     |
+| `aws`       | Active AWS profile                          | No      |
+| `time`      | Current time                                | No      |
+| `vi_mode`   | Vi mode, updated as you switch              | No      |
+| `logo`      | Custom symbol (needs a Nerd Font by default) | No      |
 
-Here's a list of related projects that have been inspired by Spaceship ZSH.
+### Git symbols
 
-- [**spaceship-prompt/spaceship-prompt**](https://github.com/spaceship-prompt/spaceship-prompt) - Spaceship is a minimalistic, powerful and extremely customizable Zsh prompt. It combines everything you may need for convenient work, without unnecessary complications, like a real spaceship.
-- [**starship/starship**](https://github.com/starship/starship) - A blazing-fast, cross-shell prompt written in Rust, heavily inspired by Spaceship ZSH.
+| Symbol       | Meaning                    |
+| ------------ | -------------------------- |
+| `⇣3` `⇡2`    | Behind, ahead of upstream  |
+| `⇠3` `⇢2`    | Behind, ahead of push remote |
+| `*1`         | Stashes                    |
+| `merge`      | Repository action in progress |
+| `~1`         | Conflicts                  |
+| `+1`         | Staged changes             |
+| `!1`         | Unstaged changes           |
+| `?1`         | Untracked files            |
+
+The git command fallback does not report stashes, push remotes, tags or repository actions.
+
+## Options
+
+Every section reads options named `DOOM_<SECTION>_<OPTION>`. Set them before loading the theme.
+
+| Option   | Meaning                                  | Example                       |
+| -------- | ---------------------------------------- | ----------------------------- |
+| `SHOW`   | Set to `false` to hide the section       | `DOOM_RUST_SHOW=false`        |
+| `PREFIX` | Text before the section                  | `DOOM_DIR_PREFIX="in "`       |
+| `SUFFIX` | Text after the section                   | `DOOM_TIME_SUFFIX="]"`        |
+| `SYMBOL` | Symbol before the content                | `DOOM_NODE_SYMBOL="⬢ "`       |
+| `COLOR`  | Color name or 256-color number           | `DOOM_DIR_COLOR=blue`         |
+
+`char` is always shown and uses `DOOM_CHAR_COLOR_SUCCESS` and `DOOM_CHAR_COLOR_FAILURE` instead of `COLOR`.
+
+Section-specific options:
+
+| Option                       | Default  | Meaning                                                         |
+| ---------------------------- | -------- | --------------------------------------------------------------- |
+| `DOOM_SEPARATOR`             | a space  | Text between sections                                           |
+| `DOOM_DIR_TRUNC`             | `3`      | Path components to show                                         |
+| `DOOM_USER_SHOW`             | `needed` | `always`, `true` (also over SSH), `needed` (root or switched user), `false` |
+| `DOOM_HOST_SHOW`             | `true`   | `always`, `true` (over SSH), `false`                            |
+| `DOOM_HOST_SHOW_FULL`        | `false`  | Show the fully qualified hostname                               |
+| `DOOM_HOST_COLOR_SSH`        | `green`  | Hostname color over SSH                                         |
+| `DOOM_USER_COLOR_ROOT`       | `red`    | Username color for root                                         |
+| `DOOM_CHAR_SYMBOL_ROOT`      | `#`      | Prompt character for root                                       |
+| `DOOM_CHAR_COLOR_SUCCESS`    | `green`  | Prompt character color                                          |
+| `DOOM_CHAR_COLOR_FAILURE`    | `red`    | Prompt character color after a failure                          |
+| `DOOM_EXEC_TIME_ELAPSED`     | `2`      | Minimum seconds before showing the duration                     |
+| `DOOM_TIME_12HR`             | `true`   | Use a 12-hour clock                                             |
+| `DOOM_TIME_FORMAT`           | `false`  | Custom format, such as `%D{%H:%M}`                              |
+| `DOOM_NODE_DEFAULT_VERSION`  | empty    | Hide the section on this version                                |
+| `DOOM_RUST_VERBOSE_VERSION`  | `false`  | Keep suffixes such as `-nightly`                                |
+| `DOOM_JOBS_AMOUNT_THRESHOLD` | `1`      | Show the count above this number of jobs                        |
+
+## Custom sections
+
+A section is a function named `doom_<name>` that sets `REPLY`. An empty `REPLY` hides it. Sections run on every prompt, so keep them fast and use `doom_cached` for slow commands:
+
+```zsh
+DOOM_SECTIONS_LEFT=(dir kube new_line status char)
+DOOM_KUBE_SYMBOL="k8s "
+DOOM_KUBE_COLOR=blue
+
+doom_kube() {
+  [[ -f Chart.yaml ]] || return
+  doom_cached kube kubectl config current-context
+  doom_segment KUBE "$REPLY"
+}
+```
+
+`doom_segment NAME text` applies the `DOOM_NAME_*` options. `doom_cached key command` keeps a command's output until the directory or `PATH` changes. Escape `%` in text you do not control with `${text//\%/%%}`.
+
+## License
+
+[MIT](LICENSE)
