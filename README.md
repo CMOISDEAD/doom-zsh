@@ -16,21 +16,8 @@
 
 A zsh theme for developers, fully customizable and compatible with different development ecosystems, seamlessly integrated with git.
 
-## Themes
-
-To select a specific theme switch branches on github and select the theme or the full version.
-
-#### Rainbow
-
-![rainbow](https://github.com/CMOISDEAD/doom-zsh/assets/51010598/594700cd-65d7-4064-b655-a0d467caf180)
-
-#### Pure (actually on the master branch)
-
-![pure](https://github.com/CMOISDEAD/doom-zsh/assets/51010598/c04e995c-864f-4234-9858-ae1dea626b96)
-
 ## Features
 
-- Multiple themes
 - Display node.js, rust, python, ruby (and more) version.
 - Multiple customizable sections.
 - Customizable order.
