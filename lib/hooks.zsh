@@ -11,6 +11,8 @@ doom_git_scan_dir() {
     gitstatus_query -d $PWD MY
 }
 
+zmodload zsh/datetime
+
 # Execution time start
 doom_exec_time_start() {
     [[ $DOOM_EXEC_TIME_SHOW == false ]] && return
@@ -27,7 +29,7 @@ doom_exec_time_stop() {
     [[ -n $DOOM_EXEC_TIME_duration ]] && unset DOOM_EXEC_TIME_duration
     [[ -z $DOOM_EXEC_TIME_start ]] && return
 
-    DOOM_EXEC_TIME_duration=$((EPOCHREALTIME - DOOM_EXEC_TIME_start))
+    (( DOOM_EXEC_TIME_duration = EPOCHREALTIME - DOOM_EXEC_TIME_start ))
 
     # Reset start time
     unset DOOM_EXEC_TIME_start
@@ -50,13 +52,5 @@ prompt_doom_precmd() {
 # A hook right before the command is started executing
 prompt_doom_preexec() {
     # Start measuring exec_time right before executing the command
-    doom_exec_time_start
-}
-
-# A hook after changing the working directory
-prompt_doom_chpwd() {
-    # spaceship::worker::eval builtin cd -q $PWD
-
-    # Restart execution time recording once dir is changed
     doom_exec_time_start
 }

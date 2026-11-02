@@ -110,4 +110,3 @@ RPROMPT='$(doom_rprompt)'
 
 add-zsh-hook preexec prompt_doom_preexec
 add-zsh-hook precmd prompt_doom_precmd
-add-zsh-hook chpwd prompt_doom_chpwd
