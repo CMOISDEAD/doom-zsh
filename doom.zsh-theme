@@ -43,35 +43,10 @@ DOOM_SECTIONS_LEFT=(
 	new_line       # Line break
 	status         # Last command return status.
 	char           # Prompt character
-
-	# NOTE: this sections still on work. (help wanted)
-	
-	#gradle        # Gradle section
-	#maven         # Maven section
-	#package       # Package version
-	#ruby          # Ruby section
-	#elm           # Elm section
-	#elixir        # Elixir section
-	#xcode         # Xcode section
-	#swift         # Swift section
-	#golang        # Go section
-	#php           # PHP section
-	#haskell       # Haskell Stack section
-	#julia         # Julia section
-	#docker        # Docker section
-	#gcloud        # Google Cloud Platform section
-	#venv          # virtualenv section
-	#conda         # conda virtualenv section
-	#dotnet        # .NET section
-	#ember         # Ember.js section
-	#kubectl       # Kubectl context section
-	#terraform     # Terraform workspace section
-	#ibmcloud      # IBM Cloud section
 )
 
 DOOM_SECTIONS_RIGHT=(
 	gitstatus # Git section ( branch status )
-	#battery       # Battery level and status
 )
 
 DOOM_LIBS=(
