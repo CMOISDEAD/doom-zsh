@@ -45,16 +45,6 @@ Then set `ZSH_THEME="doom/doom"` in your `.zshrc`.
 | zplug    | `zplug "CMOISDEAD/doom-zsh", as:theme`    |
 | antidote | `antidote bundle CMOISDEAD/doom-zsh`      |
 
-### Faster git status (optional)
-
-The git section uses the `git` command by default. In very large repositories, install [gitstatus](https://github.com/romkatv/gitstatus) and doom uses it automatically:
-
-```zsh
-git clone --depth=1 https://github.com/romkatv/gitstatus.git ~/gitstatus
-```
-
-doom looks in `~/gitstatus`, the powerlevel10k theme and `/usr/share`. Set `DOOM_GITSTATUS_DIR` for any other location.
-
 ## Sections
 
 Set these lists before loading the theme to choose and order what you see:
@@ -90,15 +80,10 @@ The lists above are the defaults. For a single-line prompt, remove `new_line`.
 | Symbol       | Meaning                    |
 | ------------ | -------------------------- |
 | `⇣3` `⇡2`    | Behind, ahead of upstream  |
-| `⇠3` `⇢2`    | Behind, ahead of push remote |
-| `*1`         | Stashes                    |
-| `merge`      | Repository action in progress |
 | `~1`         | Conflicts                  |
 | `+1`         | Staged changes             |
 | `!1`         | Unstaged changes           |
 | `?1`         | Untracked files            |
-
-The git command fallback does not report stashes, push remotes, tags or repository actions.
 
 ## Options
 

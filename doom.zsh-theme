@@ -34,8 +34,6 @@ DOOM_SEPARATOR="${DOOM_SEPARATOR=" "}"
 	done
 }
 
-doom_git_init
-
 PROMPT='${DOOM_PROMPT}'
 RPROMPT='${DOOM_RPROMPT}'
 
