@@ -10,7 +10,8 @@ doom_rust() {
   [[ -f Cargo.toml ]] || return
   (( $+commands[rustc] )) || return
 
-  local version=${${(s: :)"$(rustc --version 2>/dev/null)"}[2]}
+  doom_cached rust rustc --version
+  local version=${${(s: :)REPLY}[2]}
   [[ $DOOM_RUST_VERBOSE_VERSION == true ]] || version=${version%%-*}
 
   doom_segment RUST "v$version"

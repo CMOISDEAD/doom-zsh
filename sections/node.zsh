@@ -9,18 +9,19 @@ doom_node() {
   [[ $DOOM_NODE_SHOW == false ]] && return
   [[ -f package.json || -d node_modules ]] || return
 
-  local version
-
   if (( $+commands[fnm] )); then
-    version=$(fnm current 2>/dev/null)
+    doom_cached node fnm current
   elif (( $+functions[nvm] )); then
-    version=$(nvm current 2>/dev/null)
+    doom_cached node nvm current
   elif (( $+commands[nodenv] )); then
-    version=$(nodenv version-name 2>/dev/null)
+    doom_cached node nodenv version-name
   elif (( $+commands[node] )); then
-    version=$(node -v 2>/dev/null)
+    doom_cached node node -v
+  else
+    return
   fi
 
+  local version=$REPLY
   [[ -n $version && $version != (system|node|none) ]] || return
   [[ $version == $DOOM_NODE_DEFAULT_VERSION ]] && return
 

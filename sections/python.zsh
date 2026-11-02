@@ -13,7 +13,8 @@ doom_python() {
   local binary=${commands[python]:-$commands[python3]}
   [[ -n $binary ]] || return
 
-  local version=${$(command $binary --version 2>/dev/null)#Python }
+  doom_cached python $binary --version
+  local version=${REPLY#Python }
   [[ -n $version ]] || return
 
   [[ -n $VIRTUAL_ENV ]] && version+=" (${VIRTUAL_ENV:t})"

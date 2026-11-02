@@ -42,3 +42,4 @@ RPROMPT='${DOOM_RPROMPT}'
 
 add-zsh-hook preexec doom_preexec
 add-zsh-hook precmd doom_precmd
+add-zsh-hook chpwd doom_cache_clear
