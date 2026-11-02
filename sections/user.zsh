@@ -7,7 +7,7 @@
 # | needed              | if needed              | if needed               |
 # --------------------------------------------------------------------------
 
-DOOM_USER_SHOW="${DOOM_USER_SHOW=always}"
+DOOM_USER_SHOW="${DOOM_USER_SHOW=needed}"
 DOOM_USER_PREFIX="${DOOM_USER_PREFIX=""}"
 DOOM_USER_SUFFIX="${DOOM_USER_SUFFIX=""}"
 DOOM_USER_COLOR="${DOOM_USER_COLOR="blue"}"

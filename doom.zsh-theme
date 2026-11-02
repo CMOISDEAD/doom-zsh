@@ -10,8 +10,6 @@ autoload -Uz add-zsh-hook
 setopt prompt_subst prompt_percent
 
 (( ${+DOOM_SECTIONS_LEFT} )) || typeset -ga DOOM_SECTIONS_LEFT=(
-	logo
-	time
 	user
 	host
 	dir
@@ -19,6 +17,7 @@ setopt prompt_subst prompt_percent
 	rust
 	python
 	exec_time
+	jobs
 	new_line
 	status
 	char
