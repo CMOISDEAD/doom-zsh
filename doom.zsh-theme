@@ -17,7 +17,7 @@ setopt prompt_subst prompt_percent
 	dir
 	node
 	rust
-	pyenv
+	python
 	exec_time
 	new_line
 	status
